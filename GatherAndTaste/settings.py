@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 import os
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL, AUTHENTICATION_BACKENDS
+from django.conf.global_settings import AUTH_USER_MODEL, AUTHENTICATION_BACKENDS, MEDIA_URL, MEDIA_ROOT, STATIC_ROOT
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,6 +122,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailBackend',
+    'accounts.backends.PhoneNumberBackend',
 ]
 
 # Internationalization
@@ -140,6 +141,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Email

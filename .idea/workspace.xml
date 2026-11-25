@@ -4,6 +4,11 @@
     <list default="true" id="60b91a18-402c-4e04-b0ca-89590559ca31" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GatherAndTaste/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/GatherAndTaste/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/backends.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/backends.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +70,8 @@
       <option name="presentableId" value="Default" />
       <updated>1795448919860</updated>
       <workItem from="1795448920866" duration="2040000" />
-      <workItem from="1795530327778" duration="10709000" />
+      <workItem from="1795530327778" duration="11421000" />
+      <workItem from="1795614412381" duration="3656000" />
     </task>
     <servers />
   </component>
