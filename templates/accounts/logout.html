@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Log Out | Gather&Taste{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card text-center">
+
+        <div class="auth-header">
+
+            <h1>Log out?</h1>
+
+            <p>
+                You are currently signed in as <strong>{{ user.username }}</strong>.
+                Are you sure you want to end your session?
+            </p>
+
+        </div>
+
+        <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-brand w-100 mb-2">
+                Yes, log out
+            </button>
+
+            <a href="{% url 'common:home' %}" class="btn btn-outline-brand w-100">
+                Cancel
+            </a>
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

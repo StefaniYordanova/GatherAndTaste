@@ -1,0 +1,357 @@
+:root {
+    --color-background: #FAF9F6;
+    --color-white: #FFFFFF;
+
+    --color-primary: #64745A;
+    --color-primary-dark: #4E5D45;
+
+    --color-text: #30352D;
+    --color-muted: #85877E;
+
+    --color-border: #EAE8E1;
+    --color-accent: #C58A68;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Brand Logo */
+.brand-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.brand-logo:hover {
+    color: var(--color-text);
+}
+
+.brand-ampersand {
+    color: var(--color-accent);
+}
+
+.brand-dot {
+    color: var(--color-primary);
+}
+
+/* Navbar */
+.navbar {
+    padding: 0.9rem 0;
+}
+
+.nav-link {
+    color: var(--color-text);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--color-primary);
+}
+
+.profile-button {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 30px;
+    padding: 0.55rem 1rem;
+    color: var(--color-text);
+}
+
+.profile-button:hover {
+    background: var(--color-border);
+}
+
+.notification-link {
+    position: relative;
+}
+
+.notification-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    min-width: 19px;
+    height: 19px;
+    margin-left: 3px;
+}
+
+/* Buttons */
+.btn-brand {
+    background: var(--color-primary);
+    color: white;
+    border: 1px solid var(--color-primary);
+    border-radius: 30px;
+    padding: 0.65rem 1.4rem;
+    font-weight: 600;
+}
+
+.btn-brand:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    color: white;
+}
+
+.btn-outline-brand {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 30px;
+    padding: 0.65rem 1.4rem;
+    font-weight: 600;
+}
+
+.btn-outline-brand:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--color-white);
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-logo {
+    font-size: 1.65rem;
+}
+
+.footer-description {
+    max-width: 350px;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.footer-heading {
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+}
+
+.footer-divider {
+    border-color: var(--color-border);
+    margin: 2rem 0 1.5rem;
+}
+
+.footer-copyright,
+.footer-tagline {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+}
+
+/* Auth & Register Pages */
+.auth-section {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.auth-card {
+    background: var(--color-white);
+    width: 100%;
+    max-width: 450px;
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(48, 53, 45, 0.04);
+}
+
+.register-card {
+    max-width: 480px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+}
+
+.auth-header p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.auth-card .field-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 1.1rem;
+}
+
+.auth-card .form-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.auth-card .field-input {
+    display: block;
+    width: 100%;
+}
+
+.auth-card .field-input input:not([type="checkbox"]):not([type="radio"]),
+.auth-card .field-input select,
+.auth-card .field-input textarea,
+.auth-card .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.auth-card .field-input input:not([type="checkbox"]):not([type="radio"]):focus,
+.auth-card .field-input select:focus,
+.auth-card .field-input textarea:focus,
+.auth-card .form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(100, 116, 90, 0.12);
+}
+
+.register-card .form-text {
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin-top: 0.35rem;
+}
+
+.register-card .form-control.is-invalid,
+.register-card .field-input .is-invalid {
+    border-color: #dc3545;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.7rem;
+}
+
+.auth-footer p {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    margin-bottom: 0;
+}
+
+.auth-footer a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+/* Responsive Overrides */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        padding: 1.2rem 0 0.5rem;
+    }
+
+    .navbar-nav {
+        gap: 0.4rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.7rem 0;
+    }
+
+    .navbar-collapse > .d-flex {
+        align-items: stretch !important;
+        padding-top: 1rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .navbar-collapse .btn,
+    .navbar-collapse .dropdown,
+    .navbar-collapse .dropdown-menu {
+        width: 100%;
+    }
+
+    .navbar-collapse .profile-button {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .brand-logo {
+        font-size: 1.45rem;
+    }
+
+    .site-footer {
+        text-align: center;
+    }
+
+    .footer-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .auth-card {
+        padding: 1.8rem 1.3rem;
+    }
+
+    .auth-header h1 {
+        font-size: 1.9rem;
+    }
+}

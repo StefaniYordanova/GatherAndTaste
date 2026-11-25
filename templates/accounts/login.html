@@ -1,0 +1,97 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Log In | Gather&Taste{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <h1>Welcome back.</h1>
+
+            <p>
+                Sign in using your username, email, or phone number.
+            </p>
+
+        </div>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        <p class="mb-0">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="mb-3 d-flex flex-column field-group">
+
+                <label for="{{ form.username.id_for_label }}"
+                       class="form-label mb-1">
+                    Username, email, or phone number
+                </label>
+
+                <div class="field-input w-100">
+                    {{ form.username }}
+                </div>
+
+                {% for error in form.username.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="mb-4 d-flex flex-column field-group">
+
+                <label for="{{ form.password.id_for_label }}"
+                       class="form-label mb-1">
+                    {{ form.password.label }}
+                </label>
+
+                <div class="field-input w-100">
+                    {{ form.password }}
+                </div>
+
+                {% for error in form.password.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <input type="hidden"
+                   name="next"
+                   value="{{ next }}">
+
+            <button type="submit" class="btn btn-brand w-100">
+                Log in
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+
+            <p>
+                New to Gather & Taste?
+
+                <a href="{% url 'accounts:register' %}">
+                    Create an account
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
