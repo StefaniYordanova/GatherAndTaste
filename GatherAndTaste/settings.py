@@ -117,6 +117,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.PhoneNumberBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 # Internationalization

@@ -1,0 +1,107 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Personal Info | Gather&Taste{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container" style="max-width: 720px;">
+
+        <div class="bg-white border rounded-4 p-4 p-md-5 shadow-sm"
+             style="border-color: var(--color-border) !important;">
+
+            <div class="d-flex align-items-start justify-content-between gap-3 pb-4 mb-4 border-bottom"
+                 style="border-color: var(--color-border) !important;">
+
+                <div>
+                    <h1 class="mb-1" style="font-family: 'Playfair Display', serif; font-size: 1.85rem; font-weight: 600;">
+                        Personal Info
+                    </h1>
+                    <p class="mb-0 small" style="color: var(--color-muted);">
+                        Manage your account credentials and security details.
+                    </p>
+                </div>
+
+                <a href="{% url 'accounts:personal-info-edit' %}"
+                   class="btn btn-outline-brand d-inline-flex align-items-center gap-2">
+                    <span>&#9998;</span>
+                    <span>Edit Info</span>
+                </a>
+            </div>
+
+            <div class="row g-3 mb-4 small">
+                <div class="col-sm-6">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-background); border: 1px solid var(--color-border);">
+                        <div class="fw-semibold mb-1" style="color: var(--color-muted);">Username</div>
+                        <div>{{ object.username }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-background); border: 1px solid var(--color-border);">
+                        <div class="fw-semibold mb-1" style="color: var(--color-muted);">Email</div>
+                        <div>{{ object.email }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-background); border: 1px solid var(--color-border);">
+                        <div class="fw-semibold mb-1" style="color: var(--color-muted);">Phone Number</div>
+                        <div>{{ object.phone_number|default:"—" }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="p-3 rounded-3" style="background-color: var(--color-background); border: 1px solid var(--color-border);">
+                        <div class="fw-semibold mb-1" style="color: var(--color-muted);">Last Login</div>
+                        <div>
+                            {% if object.last_login %}
+                                {{ object.last_login|date:"M d, Y H:i" }}
+                            {% else %}
+                                Never
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="p-3 rounded-3 d-flex align-items-center justify-content-between"
+                         style="background-color: var(--color-background); border: 1px solid var(--color-border);">
+                        <div>
+                            <div class="fw-semibold mb-1" style="color: var(--color-muted);">Password</div>
+                            <div>••••••••••••</div>
+                        </div>
+                        <a href="{% url 'accounts:password-change' %}" class="btn btn-outline-brand btn-sm">
+                            Change Password
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-4 border-top d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center justify-content-between gap-2"
+                 style="border-color: var(--color-border) !important;">
+
+                <a href="{% url 'accounts:detail' %}" class="btn btn-outline-brand">
+                    &larr; Back to Profile
+                </a>
+
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <a href="{% url 'accounts:logout' %}"
+                       class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold">
+                        Log out
+                    </a>
+
+                    <a href="{% url 'accounts:delete' %}"
+                       class="btn btn-outline-danger rounded-pill px-4 py-2 fw-semibold">
+                        Delete Account
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
