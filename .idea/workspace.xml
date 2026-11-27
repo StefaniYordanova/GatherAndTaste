@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60b91a18-402c-4e04-b0ca-89590559ca31" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/GatherAndTaste.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GatherAndTaste.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GatherAndTaste/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/GatherAndTaste/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GatherAndTaste/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/GatherAndTaste/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +15,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -78,11 +72,22 @@
       <workItem from="1795448920866" duration="2040000" />
       <workItem from="1795530327778" duration="11421000" />
       <workItem from="1795614412381" duration="14696000" />
-      <workItem from="1795701374909" duration="7358000" />
+      <workItem from="1795701374909" duration="8872000" />
+      <workItem from="1795790556960" duration="4995000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/accounts/urls.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
