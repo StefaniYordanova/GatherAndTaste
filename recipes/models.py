@@ -1,21 +1,19 @@
 from decimal import Decimal
-
 from django.core.validators import MinLengthValidator
 from django.db import models
 from django.utils.text import slugify
-from GatherAndTaste.settings import AUTH_USER_MODEL
+from django.conf import settings
 from .choices import Tag, Difficulty, Visibility, IngredientUnit
 
-# TODO: Make migrations and migrate!
 
 class Recipe(models.Model):
     author = models.ForeignKey(
-        to=AUTH_USER_MODEL,
+        to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='recipes',
     )
     title = models.CharField(
-        max_length=50,
+        max_length=80,
     )
     visibility = models.CharField(
         max_length=10,
@@ -66,11 +64,7 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            slug_parts = [self.title]
-            if self.tag:
-                slug_parts.append(self.tag)
-            self.slug = slugify('-'.join(slug_parts))
-
+            self.slug = slugify(f"{self.title}-{self.author.username}")
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -84,12 +78,14 @@ class RecipeIngredient(models.Model):
         related_name='ingredients',
     )
     name = models.CharField(
-        max_length=40,
+        max_length=80,
     )
     quantity = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         default=Decimal("0.00"),
+        blank=True,
+        null=True,
     )
     unit = models.CharField(
         max_length=15,
@@ -123,4 +119,4 @@ class RecipeStep(models.Model):
         ordering = ["order", "id"]
 
     def __str__(self):
-        return f"Step {self.order}: {self.recipe.title}"
+        return f"{self.recipe.title}: Step {self.order}"

@@ -1,0 +1,474 @@
+
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="gt-recipe-shell">
+  <div class="gt-recipe-card">
+
+    <div class="gt-recipe-header">
+      <h1>Edit your recipe.</h1>
+      <p>Make changes to your recipe, ingredients, and cooking steps.</p>
+
+      <span class="gt-required-note">
+        Fields marked with
+        <span class="gt-asterisk">*</span>
+        are required.
+      </span>
+    </div>
+
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {% if form.non_field_errors %}
+        <div class="gt-error">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+
+
+      <!-- RECIPE DETAILS -->
+
+      <div class="gt-section">
+
+        <h2 class="gt-section-title">Recipe Details</h2>
+
+        {% for field in form %}
+          <div class="gt-field">
+
+            <label for="{{ field.id_for_label }}">
+              {{ field.label }}
+              {% if field.field.required %}
+                <span class="gt-asterisk">*</span>
+              {% endif %}
+            </label>
+
+            {{ field }}
+
+            {% if field.errors %}
+              <div class="gt-error">{{ field.errors }}</div>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+
+      </div>
+
+
+      <!-- INGREDIENTS -->
+
+      <div class="gt-section">
+
+        <h2 class="gt-section-title">Ingredients</h2>
+
+        {{ ingredient_formset.management_form }}
+
+        {% if ingredient_formset.non_form_errors %}
+          <div class="gt-error">
+            {{ ingredient_formset.non_form_errors }}
+          </div>
+        {% endif %}
+
+        <ul id="ingredients-list" class="gt-ingredients-list">
+
+          {% for subform in ingredient_formset %}
+
+            <li class="gt-ingredient-row" data-formset-row>
+
+              {% for hidden in subform.hidden_fields %}
+                {{ hidden }}
+              {% endfor %}
+
+              {% if subform.DELETE %}
+                <span class="gt-hidden-delete">
+                  {{ subform.DELETE }}
+                </span>
+              {% endif %}
+
+              <div>
+                <label for="{{ subform.quantity.id_for_label }}">
+                  Quantity
+                  {% if subform.quantity.field.required %}
+                    <span class="gt-asterisk">*</span>
+                  {% endif %}
+                </label>
+                {{ subform.quantity }}
+              </div>
+
+              <div>
+                <label for="{{ subform.unit.id_for_label }}">
+                  Unit
+                </label>
+                {{ subform.unit }}
+              </div>
+
+              <div>
+                <label for="{{ subform.name.id_for_label }}">
+                  Name
+                  {% if subform.name.field.required %}
+                    <span class="gt-asterisk">*</span>
+                  {% endif %}
+                </label>
+                {{ subform.name }}
+              </div>
+
+              <button
+                type="button"
+                class="gt-remove-btn"
+                data-remove-row
+              >
+                Remove
+              </button>
+
+              {% if subform.errors %}
+                <div class="gt-error">
+                  {{ subform.errors }}
+                </div>
+              {% endif %}
+
+            </li>
+
+          {% endfor %}
+
+        </ul>
+
+
+        <!-- EMPTY INGREDIENT TEMPLATE -->
+
+        <template id="ingredient-empty-template">
+
+          <li class="gt-ingredient-row" data-formset-row>
+
+            {% for hidden in ingredient_formset.empty_form.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+
+            {% if ingredient_formset.empty_form.DELETE %}
+              <span class="gt-hidden-delete">
+                {{ ingredient_formset.empty_form.DELETE }}
+              </span>
+            {% endif %}
+
+            <div>
+              <label for="{{ ingredient_formset.empty_form.quantity.id_for_label }}">
+                Quantity
+              </label>
+              {{ ingredient_formset.empty_form.quantity }}
+            </div>
+
+            <div>
+              <label for="{{ ingredient_formset.empty_form.unit.id_for_label }}">
+                Unit
+              </label>
+              {{ ingredient_formset.empty_form.unit }}
+            </div>
+
+            <div>
+              <label for="{{ ingredient_formset.empty_form.name.id_for_label }}">
+                Name <span class="gt-asterisk">*</span>
+              </label>
+              {{ ingredient_formset.empty_form.name }}
+            </div>
+
+            <button
+              type="button"
+              class="gt-remove-btn"
+              data-remove-row
+            >
+              Remove
+            </button>
+
+          </li>
+
+        </template>
+
+
+        <button
+          type="button"
+          id="add-ingredient-btn"
+          class="gt-btn-pill-outline"
+        >
+          + Add Ingredient
+        </button>
+
+      </div>
+
+
+      <!-- STEPS -->
+
+      <div class="gt-section">
+
+        <h2 class="gt-section-title">Steps</h2>
+
+        {{ step_formset.management_form }}
+
+        {% if step_formset.non_form_errors %}
+          <div class="gt-error">
+            {{ step_formset.non_form_errors }}
+          </div>
+        {% endif %}
+
+        <div id="steps-container" class="gt-steps-list">
+
+          {% for subform in step_formset %}
+
+            <div class="gt-step-row" data-formset-row>
+
+              {% for hidden in subform.hidden_fields %}
+                {{ hidden }}
+              {% endfor %}
+
+              {% if subform.DELETE %}
+                <span class="gt-hidden-delete">
+                  {{ subform.DELETE }}
+                </span>
+              {% endif %}
+
+              <div>
+                <label for="{{ subform.order.id_for_label }}">
+                  Order <span class="gt-asterisk">*</span>
+                </label>
+                {{ subform.order }}
+              </div>
+
+              <div>
+                <label for="{{ subform.description.id_for_label }}">
+                  Description <span class="gt-asterisk">*</span>
+                </label>
+                {{ subform.description }}
+              </div>
+
+              <div>
+                <label for="{{ subform.image.id_for_label }}">
+                  Image
+                </label>
+
+                {{ subform.image }}
+
+                {% if subform.instance.image %}
+                  <p class="gt-current-image">
+                    Current image:
+                    <a
+                      href="{{ subform.instance.image.url }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {{ subform.instance.image.name }}
+                    </a>
+                  </p>
+                {% endif %}
+              </div>
+
+              <div class="gt-step-footer">
+                <button
+                  type="button"
+                  class="gt-remove-btn"
+                  data-remove-row
+                >
+                  Remove Step
+                </button>
+              </div>
+
+              {% if subform.errors %}
+                <div class="gt-error">
+                  {{ subform.errors }}
+                </div>
+              {% endif %}
+
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+
+        <!-- EMPTY STEP TEMPLATE -->
+
+        <template id="step-empty-template">
+
+          <div class="gt-step-row" data-formset-row>
+
+            {% for hidden in step_formset.empty_form.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+
+            {% if step_formset.empty_form.DELETE %}
+              <span class="gt-hidden-delete">
+                {{ step_formset.empty_form.DELETE }}
+              </span>
+            {% endif %}
+
+            <div>
+              <label for="{{ step_formset.empty_form.order.id_for_label }}">
+                Order <span class="gt-asterisk">*</span>
+              </label>
+              {{ step_formset.empty_form.order }}
+            </div>
+
+            <div>
+              <label for="{{ step_formset.empty_form.description.id_for_label }}">
+                Description <span class="gt-asterisk">*</span>
+              </label>
+              {{ step_formset.empty_form.description }}
+            </div>
+
+            <div>
+              <label for="{{ step_formset.empty_form.image.id_for_label }}">
+                Image
+              </label>
+              {{ step_formset.empty_form.image }}
+            </div>
+
+            <div class="gt-step-footer">
+              <button
+                type="button"
+                class="gt-remove-btn"
+                data-remove-row
+              >
+                Remove Step
+              </button>
+            </div>
+
+          </div>
+
+        </template>
+
+
+        <button
+          type="button"
+          id="add-step-btn"
+          class="gt-btn-pill-outline"
+        >
+          + Add Step
+        </button>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+
+      <div class="gt-actions">
+
+        <button type="submit" class="gt-btn-pill-primary">
+          Save Changes
+        </button>
+
+        <a
+          href="{% url 'common:home' %}"
+          class="gt-cancel-link"
+        >
+          Cancel
+        </a>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+<!-- FORMSET JAVASCRIPT -->
+
+<script>
+  function setupFormsetControls(
+    buttonId,
+    templateId,
+    containerId,
+    totalFormsId,
+    prefix
+  ) {
+    const addBtn = document.getElementById(buttonId);
+    const template = document.getElementById(templateId);
+    const container = document.getElementById(containerId);
+    const totalFormsInput = document.getElementById(totalFormsId);
+
+    if (!addBtn || !template || !container || !totalFormsInput) {
+      return;
+    }
+
+    // ADD A NEW FORM
+
+    addBtn.addEventListener("click", () => {
+
+      const index = parseInt(totalFormsInput.value, 10);
+
+      const html = template.innerHTML.replace(
+        /__prefix__/g,
+        index
+      );
+
+      container.insertAdjacentHTML("beforeend", html);
+
+      const newRow = container.lastElementChild;
+
+      if (prefix === "steps") {
+        const orderInput = newRow.querySelector(
+          'input[name$="-order"]'
+        );
+
+        if (orderInput) {
+          orderInput.value = index + 1;
+        }
+      }
+
+      totalFormsInput.value = index + 1;
+
+    });
+
+
+    // REMOVE A FORM
+
+    container.addEventListener("click", (event) => {
+
+      const removeBtn = event.target.closest("[data-remove-row]");
+
+      if (!removeBtn) {
+        return;
+      }
+
+      const row = removeBtn.closest("[data-formset-row]");
+
+      if (!row) {
+        return;
+      }
+
+      const deleteCheckbox = row.querySelector(
+        'input[type="checkbox"][name$="-DELETE"]'
+      );
+
+      if (deleteCheckbox) {
+        deleteCheckbox.checked = true;
+        row.style.display = "none";
+      }
+
+    });
+
+  }
+
+
+  // INGREDIENTS
+
+  setupFormsetControls(
+    "add-ingredient-btn",
+    "ingredient-empty-template",
+    "ingredients-list",
+    "id_ingredients-TOTAL_FORMS",
+    "ingredients"
+  );
+
+
+  // STEPS
+
+  setupFormsetControls(
+    "add-step-btn",
+    "step-empty-template",
+    "steps-container",
+    "id_steps-TOTAL_FORMS",
+    "steps"
+  );
+
+</script>
+
+{% endblock %}

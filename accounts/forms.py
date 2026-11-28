@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from .models import Profile
-from .mixins import DisabledFieldsFormMixin
+from GatherAndTaste.mixins import DisabledFieldsFormMixin
 
 UserModel = get_user_model()
 
@@ -46,5 +46,5 @@ class UserPersonalInfoEditForm(BaseUserPersonalInfoForm):
     ...
 
 
-class UserDeleteForm(DisabledFieldsFormMixin, BaseUserPersonalInfoForm):
+class UserDeleteForm(BaseUserPersonalInfoForm, DisabledFieldsFormMixin):
     ...
